@@ -19,6 +19,30 @@
 		},
 		"FileServer1_properties_typeProperties_userId": {
 			"value": "LAPTOP-JL8DML4Q\\Akhilesh"
+		},
+		"ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList": {
+			"value": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
+		},
+		"DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
+			"value": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
 		}
 	}
 }

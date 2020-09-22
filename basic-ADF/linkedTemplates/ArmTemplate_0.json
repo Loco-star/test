@@ -26,6 +26,32 @@
 		"FileServer1_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "LAPTOP-JL8DML4Q\\Akhilesh"
+		},
+		"DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
+			"type": "array",
+			"defaultValue": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
+		},
+		"ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList": {
+			"type": "array",
+			"defaultValue": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
 		}
 	},
 	"variables": {
@@ -433,6 +459,70 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Excel1')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DBtobackupDBrefresh')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CopyDatafromDBtoBackupDB",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"list": "[parameters('DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 10,
+						"startTime": "2020-09-22T10:47:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyDatafromDBtoBackupDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ExceltoDBrefresh')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "BulkCopyfromExceltoSQL",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"sheetList": "[parameters('ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 10,
+						"startTime": "2020-09-22T10:40:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/BulkCopyfromExceltoSQL')]"
 			]
 		}
 	]
