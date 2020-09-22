@@ -1,0 +1,90 @@
+{
+	"name": "CopyDatafromDBtoBackupDB",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.list",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy to backupDB",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlTable2",
+									"type": "DatasetReference",
+									"parameters": {
+										"srcTableName": "@item()"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlTable3",
+									"type": "DatasetReference",
+									"parameters": {
+										"sinkTableName": "@{item()}"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"list": {
+				"type": "array",
+				"defaultValue": [
+					"Vendor",
+					"Date",
+					"Category",
+					"DefectType",
+					"Plant",
+					"Metrics",
+					"MaterialType",
+					"Defect"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-22T09:17:06Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

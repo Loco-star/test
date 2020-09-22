@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimeAmb",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}

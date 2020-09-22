@@ -1,0 +1,92 @@
+{
+	"name": "BulkCopyfromExceltoSQL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.sheetList",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "FileServerReadSettings",
+										"recursive": true
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Excel1",
+									"type": "DatasetReference",
+									"parameters": {
+										"sheetName": "@item()"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"tableName": "@{item()}"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"sheetList": {
+				"type": "array",
+				"defaultValue": [
+					"Vendor",
+					"Date",
+					"Category",
+					"DefectType",
+					"Plant",
+					"Metrics",
+					"MaterialType",
+					"Defect"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-21T11:52:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
