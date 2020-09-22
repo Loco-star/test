@@ -1,0 +1,36 @@
+{
+	"name": "ExceltoDBrefresh",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "BulkCopyfromExceltoSQL",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"sheetList": [
+						"Vendor",
+						"Date",
+						"Category",
+						"DefectType",
+						"Plant",
+						"Metrics",
+						"MaterialType",
+						"Defect"
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2020-09-22T10:40:00.000Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
