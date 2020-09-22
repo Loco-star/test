@@ -40,6 +40,19 @@
 				"Defect"
 			]
 		},
+		"ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
+			"type": "array",
+			"defaultValue": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
+		},
 		"DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
 			"type": "array",
 			"defaultValue": [
@@ -477,20 +490,38 @@
 						"parameters": {
 							"sheetList": "[parameters('ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList')]"
 						}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "CopyDatafromDBtoBackupDB",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"list": "[parameters('ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list')]"
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Minute",
-						"interval": 10,
+						"frequency": "Day",
+						"interval": 1,
 						"startTime": "2020-09-22T10:40:00.000Z",
-						"timeZone": "UTC"
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								7
+							]
+						}
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/BulkCopyfromExceltoSQL')]"
+				"[concat(variables('factoryId'), '/pipelines/BulkCopyfromExceltoSQL')]",
+				"[concat(variables('factoryId'), '/pipelines/CopyDatafromDBtoBackupDB')]"
 			]
 		},
 		{
@@ -514,10 +545,18 @@
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Minute",
-						"interval": 10,
+						"frequency": "Day",
+						"interval": 1,
 						"startTime": "2020-09-22T10:47:00.000Z",
-						"timeZone": "UTC"
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								7
+							]
+						}
 					}
 				}
 			},

@@ -40,6 +40,19 @@
 				"Defect"
 			]
 		},
+		"ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
+			"type": "array",
+			"defaultValue": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
+		},
 		"DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
 			"type": "array",
 			"defaultValue": [
@@ -100,6 +113,9 @@
 					},
 					"ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList": {
 						"value": "[parameters('ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList')]"
+					},
+					"ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
+						"value": "[parameters('ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list')]"
 					}
 				}
 			},
