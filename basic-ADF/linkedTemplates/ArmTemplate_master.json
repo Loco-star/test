@@ -70,6 +70,19 @@
 				"Defect"
 			]
 		},
+		"ExceltoDBrefresh_properties_BulkCopyNew_parameters_sheetList": {
+			"type": "array",
+			"defaultValue": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -123,6 +136,9 @@
 					},
 					"ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
 						"value": "[parameters('ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list')]"
+					},
+					"ExceltoDBrefresh_properties_BulkCopyNew_parameters_sheetList": {
+						"value": "[parameters('ExceltoDBrefresh_properties_BulkCopyNew_parameters_sheetList')]"
 					}
 				}
 			},

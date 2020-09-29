@@ -58,6 +58,18 @@
 				"MaterialType",
 				"Defect"
 			]
+		},
+		"ExceltoDBrefresh_properties_BulkCopyNew_parameters_sheetList": {
+			"value": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
 		}
 	}
 }
