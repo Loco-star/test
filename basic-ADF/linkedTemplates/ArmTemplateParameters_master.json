@@ -11,6 +11,9 @@
 		"AzureSqlDatabase2_connectionString": {
 			"value": ""
 		},
+		"BulkCopyNewLS_connectionString": {
+			"value": ""
+		},
 		"FileServer1_password": {
 			"value": ""
 		},
@@ -19,6 +22,18 @@
 		},
 		"FileServer1_properties_typeProperties_userId": {
 			"value": "LAPTOP-JL8DML4Q\\Akhilesh"
+		},
+		"DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
+			"value": [
+				"Vendor",
+				"Date",
+				"Category",
+				"DefectType",
+				"Plant",
+				"Metrics",
+				"MaterialType",
+				"Defect"
+			]
 		},
 		"ExceltoDBrefresh_properties_BulkCopyfromExceltoSQL_parameters_sheetList": {
 			"value": [
@@ -33,18 +48,6 @@
 			]
 		},
 		"ExceltoDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
-			"value": [
-				"Vendor",
-				"Date",
-				"Category",
-				"DefectType",
-				"Plant",
-				"Metrics",
-				"MaterialType",
-				"Defect"
-			]
-		},
-		"DBtobackupDBrefresh_properties_CopyDatafromDBtoBackupDB_parameters_list": {
 			"value": [
 				"Vendor",
 				"Date",
