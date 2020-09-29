@@ -39,23 +39,33 @@
 						"Defect"
 					]
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "BulkCopyNew",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"sheetList": [
+						"Vendor",
+						"Date",
+						"Category",
+						"DefectType",
+						"Plant",
+						"Metrics",
+						"MaterialType",
+						"Defect"
+					]
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
+				"frequency": "Minute",
+				"interval": 5,
 				"startTime": "2020-09-22T10:40:00.000Z",
-				"timeZone": "UTC",
-				"schedule": {
-					"minutes": [
-						0
-					],
-					"hours": [
-						7
-					]
-				}
+				"timeZone": "UTC"
 			}
 		}
 	}
